@@ -1,5 +1,74 @@
-  /* Additional styles for booking page */
-        .booking-hero {
+/* Grid container */
+.time-slots-grid > * {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.time-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* Slot dasar */
+.time-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    cursor: pointer;
+    user-select: none;
+    background-color: #ffffff;
+
+    transition: all 0.2s ease;
+}
+
+/* Hilangkan radio default */
+.time-slot input {
+    display: none;
+}
+
+/* Hover */
+.time-slot:hover {
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+
+/* Selected */
+/* Selected (satu kotak penuh) */
+.time-slot:has(input:checked) {
+    background-color: var(--primary-green);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+
+
+/* Disabled / sudah dibooking */
+.time-slot.disabled {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    color: #9ca3af;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* Disabled hover (tidak berubah) */
+.time-slot.disabled:hover {
+    border-color: #d1d5db;
+    color: #9ca3af;
+}
+
+
+  .booking-hero {
             min-height: 60vh;
             padding-top: 120px;
         }
@@ -7,7 +76,7 @@
         .booking-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: var(--spacing-lg) var(--spacing-md);
+            padding: var(--spacing-lg) var(--spacing-sm);
         }
 
         .booking-form-wrapper {
@@ -218,6 +287,13 @@
             .barber-options,
             .time-slots {
                 grid-template-columns: 1fr;
+            }
+            .booking-form-wrapper {
+            background: var(--dark-card);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
             }
         }
 .custom-modal {

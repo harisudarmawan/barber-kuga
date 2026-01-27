@@ -16,13 +16,16 @@ class BarberForm
                     ->required(),
                 TextInput::make('status')
                     ->required(),
-                FileUpload::make('avatar')
-                    ->disk('public')
-                    ->directory('avatar')
-                    ->image()
-                    ->imageEditor()
-                    ->visibility('public')
-                    ->required(),
+                // FileUpload::make('avatar')
+                //     ->disk('public')
+                //     ->directory('avatar')
+                //     ->image()
+                //     ->imageEditor()
+                //     ->visibility('public')
+                //     ->required(),
+                TextInput::make('avatar')
+                    ->required()
+                    ->label('Avatar'),
             ]);
     }
 }

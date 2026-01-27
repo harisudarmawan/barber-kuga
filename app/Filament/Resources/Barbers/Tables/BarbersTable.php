@@ -5,7 +5,6 @@ namespace App\Filament\Resources\Barbers\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -19,10 +18,8 @@ class BarbersTable
                     ->searchable(),
                 TextColumn::make('status')
                     ->searchable(),
-                ImageColumn::make('avatar')
-                    ->disk('public')
-                    ->label('Avatar')
-                    ->circular(),
+                TextColumn::make('avatar')
+                    ->label('Avatar'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

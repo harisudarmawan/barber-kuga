@@ -4,9 +4,10 @@ namespace App\Filament\Resources\Bookings\Schemas;
 
 use App\Enums\PaymentMethods;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
@@ -26,12 +27,14 @@ class BookingForm
                 TextInput::make('phone')
                     ->tel()
                     ->required(),
-                TextInput::make('service_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('barber_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('service_id')
+                    ->label('Layanan')
+                    ->relationship('service', 'name')
+                    ->required(),
+                Select::make('barber_id')
+                    ->label('Barber')
+                    ->relationship('barber', 'name')
+                    ->required(),
                 DatePicker::make('booking_date')
                     ->required(),
                 TimePicker::make('booking_time')
@@ -44,7 +47,12 @@ class BookingForm
                 Select::make('payment_method')
                     ->options(PaymentMethods::class)
                     ->required(),
-                TextInput::make('proof_of_payment')
+                FileUpload::make('proof_of_payment')
+                    ->disk('public')
+                    ->directory('payment_proofs')
+                    ->visibility('public')
+                    ->image()
+                    ->imageEditor()
                     ->required(),
             ]);
     }

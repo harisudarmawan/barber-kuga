@@ -11,7 +11,7 @@
                 Temukan versi terbaik diri Anda di tangan para expert kami.
             </p>
             <div class="hero-buttons">
-                <a href="booking.html" class="btn btn-book">Booking Sekarang <span class="arrow">→</span></a>
+                <a href="{{ route('booking') }}" class="btn btn-book">Booking Sekarang <span class="arrow">→</span></a>
                 <a href="#layanan" class="btn btn-view">Lihat Layanan <span class="arrow">→</span></a>
             </div>
         </div>
@@ -421,9 +421,9 @@
             </div>
 
             <!-- <div style="text-align: center; margin-top: 2rem;" class="fade-in">
-                    <a href="journal.html" class="btn btn-outline" style="padding: 1rem 3rem;">Lihat Semua Style Journal
-                        (13+) →</a>
-                </div> -->
+                            <a href="journal.html" class="btn btn-outline" style="padding: 1rem 3rem;">Lihat Semua Style Journal
+                                (13+) →</a>
+                        </div> -->
         </div>
     </section>
 

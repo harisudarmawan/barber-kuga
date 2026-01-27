@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('booking_code');
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone');
@@ -31,6 +32,9 @@ return new class extends Migration
             $table->enum('payment_method', ['bca', 'mandiri', 'bni', 'dana', 'qris', 'bri']);
             // bukti pembayaran dp
             $table->string('proof_of_payment');
+            $table->decimal('dp_amount');
+            $table->decimal('total_price');
+
             $table->timestamps();
         });
     }
