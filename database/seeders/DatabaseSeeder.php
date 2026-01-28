@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             BarberSeeder::class,
             TimeSlotSeeder::class,
             GalerySeeder::class,
+            JournalSeeder::class,
         ]);
     }
 }

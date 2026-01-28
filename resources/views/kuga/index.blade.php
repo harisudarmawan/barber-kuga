@@ -228,161 +228,19 @@
             <!-- JOURNAL SLIDER -->
             <div class="journal-slider-container fade-in">
                 <div class="journal-wrapper" id="journalWrapper">
-                    <!-- 1. Taper Fade -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/styles/taper-fade.png" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Taper Fade</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Gradasi halus yang clean dan
-                                profesional.</p>
-                            <a href="articles/taper-fade.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
+                    @foreach ($journals as $journal)
+                        <div class="service-card" style="padding: 0; overflow: hidden;">
+                            <img src="{{ asset('storage/' . $journal->image) }}"
+                                style="width: 100%; height: 200px; object-fit: cover;">
+                            <div style="padding: 1.5rem;">
+                                <h4 style="margin-bottom: 0.5rem;">{{ $journal->title }}</h4>
+                                <p style="font-size: 0.9rem; color: var(--gray-text);">{{ $journal->summary }}</p>
+                                <a href="{{ route('journal.view', $journal->title) }}"
+                                    style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
+                                    →</a>
+                            </div>
                         </div>
-                    </div>
-                    <!-- 2. Side Part -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Classic Side Part</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Gaya belahan samping yang tegas dan
-                                berwibawa.</p>
-                            <a href="articles/side-part.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 3. Two Block -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Modern Two Block</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Tren Korea yang bervolume untuk
-                                rambut Asia.</p>
-                            <a href="articles/two-block.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 4. Wolf Cut -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Wolf Cut</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Perpaduan liar Shag & Mullet yang
-                                artistik.</p>
-                            <a href="articles/wolf-cut.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 5. Burst Fade -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Burst Fade</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Gradasi melengkung telinga yang
-                                tajam.</p>
-                            <a href="articles/burst-fade.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 6. French Crop -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">French Crop</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Poni pendek edgy dan rendah
-                                perawatan.</p>
-                            <a href="articles/french-crop.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 7. Mullet -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Modern Mullet</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Gaya lawas yang kembali tren dan
-                                unik.</p>
-                            <a href="articles/mullet.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 8. Pompadour -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Classic Pompadour</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Volume berkelas untuk kesan percaya
-                                diri.</p>
-                            <a href="articles/pompadour.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 9. Buzz Cut -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Buzz Cut</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Kepraktisan maksimal dengan potongan
-                                bersih.</p>
-                            <a href="articles/buzz-cut.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 10. Undercut -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Modern Undercut</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Kontras tajam dan versatilitas
-                                tinggi.</p>
-                            <a href="articles/undercut.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 11. Top Knot -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Top Knot</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Modern Samurai look yang maskulin.
-                            </p>
-                            <a href="articles/top-knot.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 12. Slick Back -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Classic Slick Back</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Definisi ketegasan dan klimis pria.
-                            </p>
-                            <a href="articles/slick-back.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
-                    <!-- 13. Combed Over -->
-                    <div class="service-card" style="padding: 0; overflow: hidden;">
-                        <img src="images/jurnal/jurnal1.jpeg" style="width: 100%; height: 200px; object-fit: cover;">
-                        <div style="padding: 1.5rem;">
-                            <h4 style="margin-bottom: 0.5rem;">Combed Over</h4>
-                            <p style="font-size: 0.9rem; color: var(--gray-text);">Elegansi klasik yang menawan.</p>
-                            <a href="articles/combed-over.html"
-                                style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Selengkapnya
-                                →</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
                 <!-- SLIDER CONTROLS -->
@@ -392,10 +250,11 @@
                 </div>
             </div>
 
-            <!-- <div style="text-align: center; margin-top: 2rem;" class="fade-in">
-                                        <a href="journal.html" class="btn btn-outline" style="padding: 1rem 3rem;">Lihat Semua Style Journal
-                                            (13+) →</a>
-                                    </div> -->
+            <div style="text-align: center; margin-top: 2rem;" class="fade-in">
+                <a href="{{ route('journal.index') }}" class="btn btn-outline" style="padding: 1rem 3rem;">Lihat Semua Style
+                    Journal
+                    ({{ $journalCount }}+) →</a>
+            </div>
         </div>
     </section>
 
