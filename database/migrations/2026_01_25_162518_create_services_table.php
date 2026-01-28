@@ -17,8 +17,12 @@ return new class extends Migration
             $table->decimal('price');
             // lama waktu pelayanan
             $table->integer('duration');
+            // Short Description
+            $table->string('description');
             // emoji
             $table->string('emoji');
+            // relasi category
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class ServicesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('category.name'),
                 TextColumn::make('price')
                     ->numeric()
                     ->prefix('Rp ')

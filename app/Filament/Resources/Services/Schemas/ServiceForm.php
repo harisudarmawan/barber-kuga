@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Services\Schemas;
 
+use App\Models\ServiceCategories;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -24,6 +27,26 @@ class ServiceForm
                     ->default(0)
                     ->suffix('menit'),
                 TextInput::make('emoji')
+                    ->required(),
+
+                Select::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->nullable()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->unique(),
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        return ServiceCategories::create($data)->id;
+                    }),
+                // desription
+                Textarea::make('description')
+                    ->label('Deskripsi Singkat')
+                    ->rows(3)
                     ->required(),
             ]);
     }

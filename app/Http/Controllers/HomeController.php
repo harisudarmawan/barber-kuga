@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Galery;
 use App\Models\Journal;
+use App\Models\Service;
+use App\Models\ServiceCategories;
 
 class HomeController extends Controller
 {
@@ -19,6 +21,11 @@ class HomeController extends Controller
         // Count journals
         $journalCount = Journal::count() - $journals->count();
 
-        return view('kuga.index', compact('galeris', 'journals', 'journalCount'));
+        // Get service data by CategoryService
+        $categories = ServiceCategories::with(['services' => function ($q) {
+            $q->orderBy('name');
+        }])->get();
+
+        return view('kuga.index', compact('galeris', 'journals', 'journalCount', 'categories'));
     }
 }

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             TimeSlotSeeder::class,
             GalerySeeder::class,
             JournalSeeder::class,
+            ServiceCategoriesSeeder::class,
         ]);
     }
 }

@@ -92,54 +92,22 @@
                 <h2>Layanan <span class="gradient-text">Premium</span> Kami</h2>
                 <p>Pilihan perawatan terbaik untuk penampilan maksimal Anda</p>
             </div>
-
-            <h3
-                style="margin-top: 3rem; margin-bottom: 2rem; color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 1rem;">
-                General Cut</h3>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">✂️</div>
-                    <h3>Classic Haircut</h3>
-                    <p>Potong rambut dengan teknik profesional + keramas + hair tonic + hot towel + styling</p>
-                    <p class="service-price">Rp 75.000</p>
+            @foreach ($categories as $category)
+                <h3
+                    style="margin-top: 3rem; margin-bottom: 2rem; color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 1rem;">
+                    {{ $category->name }}
+                </h3>
+                <div class="services-grid">
+                    @foreach ($category->services as $service)
+                        <div class="service-card fade-in">
+                            <div class="service-icon">{{ $service->emoji }}</div>
+                            <h3>{{ $service->name }}</h3>
+                            <p>{{ $service->description }}</p>
+                            <p class="service-price">Rp {{ number_format($service->price, 0, ',', '.') }}</p>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">💈</div>
-                    <h3>Premium Styling</h3>
-                    <p>Potong rambut detail + konsultasi gaya + premium hair product + head massage</p>
-                    <p class="service-price">Rp 95.000</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🪒</div>
-                    <h3>Beard Grooming</h3>
-                    <p>Perawatan jenggot & kumis + razor shave + premium beard oil application</p>
-                    <p class="service-price">Rp 50.000</p>
-                </div>
-            </div>
-
-            <h3
-                style="margin-top: 4rem; margin-bottom: 2rem; color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 1rem;">
-                Specialist Treatment</h3>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">✨</div>
-                    <h3>Hair Treatment</h3>
-                    <p>Hair mask premium untuk kesehatan akar rambut, ketombe, dan rambut rontok</p>
-                    <p class="service-price">Rp 85.000</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🎨</div>
-                    <h3>Hair Coloring</h3>
-                    <p>Pewarnaan rambut profesional (Natural, Fashion, or Bold Cover)</p>
-                    <p class="service-price">Rp 250.000</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">💆</div>
-                    <h3>Executive Massage</h3>
-                    <p>Pijat kepala, leher, dan bahu intensif untuk relaksasi total</p>
-                    <p class="service-price">Rp 45.000</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 

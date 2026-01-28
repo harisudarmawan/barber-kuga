@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Service extends Model
 {
@@ -12,5 +13,11 @@ class Service extends Model
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    // Satu service hanya bisa memiliki satu category
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(ServiceCategories::class);
     }
 }
