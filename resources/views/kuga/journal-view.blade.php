@@ -1,7 +1,7 @@
 @extends('kuga.layouts.app')
 @section('content')
 
-    <section class="article-hero">
+    <section class="article-hero" style="--bg-image: url('{{ asset('storage/' . $journal->image) }}')">
         <div class="container">
             <h1 class="gradient-text">{{ $journal->title }}</h1>
             <p>{{ $journal->summary }}</p>
