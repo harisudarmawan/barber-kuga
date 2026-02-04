@@ -32,6 +32,7 @@ class Booking extends Model
         'booking_time' => 'datetime:H:i',
         'verified_at' => 'datetime',
         'payment_method' => PaymentMethods::class,
+        'status' => \App\Enums\StatusBookingEnum::class,
     ];
 
     /**

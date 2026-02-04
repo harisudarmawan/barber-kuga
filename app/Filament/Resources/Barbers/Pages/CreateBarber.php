@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateBarber extends CreateRecord
 {
     protected static string $resource = BarberResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

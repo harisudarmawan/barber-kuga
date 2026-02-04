@@ -10,6 +10,11 @@ class EditGalery extends EditRecord
 {
     protected static string $resource = GaleryResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
     protected function getHeaderActions(): array
     {
         return [

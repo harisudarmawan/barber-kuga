@@ -36,16 +36,7 @@ class LatestBookings extends TableWidget
                     ->sortable()
                     ->label('Tanggal'),
                 \Filament\Tables\Columns\TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'waiting_payment' => 'warning',
-                        'waiting_verification' => 'info',
-                        'confirmed' => 'success',
-                        'completed' => 'success',
-                        'cancelled' => 'danger',
-                        default => 'gray',
-                    })
-                    ->formatStateUsing(fn (string $state): string => ucfirst(str_replace('_', ' ', $state))),
+                    ->badge(),
                 \Filament\Tables\Columns\TextColumn::make('total_price')
                     ->money('IDR')
                     ->sortable()
