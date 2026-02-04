@@ -6,10 +6,10 @@ use App\Models\Barber;
 use App\Models\Booking;
 use App\Models\Service;
 use App\Models\TimeSlot;
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class BookingWizard extends Component
 {
@@ -17,22 +17,33 @@ class BookingWizard extends Component
 
     // Wizard State
     public $step = 1;
+
     public $totalSteps = 6;
 
     // Data Properties
     public $service_id;
+
     public $barber_id;
+
     public $booking_date;
+
     public $booking_time;
+
     public $name;
+
     public $phone;
+
     public $notes;
+
     public $payment_method;
+
     public $payment_proof;
+
     public $booking_code;
-    
+
     // Computed/Fetched Data
     public $total_price = 0;
+
     public $dp_amount = 0;
 
     protected $listeners = ['refreshComponent' => '$refresh'];
@@ -71,7 +82,7 @@ class BookingWizard extends Component
     {
         $this->service_id = $id;
         $this->total_price = $price;
-        $this->dp_amount = $price * 0.3; // Example: 30% DP
+        $this->dp_amount = $price * 0.5; // Example: 50% DP
         $this->nextStep();
     }
 
@@ -116,8 +127,7 @@ class BookingWizard extends Component
         }
     }
 
-
-    public function messages() 
+    public function messages()
     {
         return [
             'service_id.required' => 'Silakan pilih layanan terlebih dahulu.',
@@ -156,7 +166,7 @@ class BookingWizard extends Component
 
         // Create Booking
         $booking = Booking::create([
-            'booking_code' => 'BK-' . strtoupper(Str::random(8)),
+            'booking_code' => 'BK-'.strtoupper(Str::random(8)),
             'service_id' => $this->service_id,
             'barber_id' => $this->barber_id,
             'booking_date' => $this->booking_date,
@@ -175,11 +185,11 @@ class BookingWizard extends Component
 
         // Move to Success Step
         $this->step = 6;
-        
+
         // Optional: clear session/state if needed, but for now we keep it to show success message
     }
 
-    #[Layout('kuga.layouts.app')] 
+    #[Layout('kuga.layouts.app')]
     public function render()
     {
         $data = [];
@@ -195,15 +205,16 @@ class BookingWizard extends Component
                 ->where('status', '!=', 'expired')
                 ->pluck('booking_time')
                 ->toArray();
-                
+
             $allSlots = TimeSlot::where('is_active', true)->orderBy('start_time')->get();
-            
+
             // Map slots to include is_taken status
-            $data['timeSlots'] = $allSlots->map(function($slot) use ($takenSlots) {
+            $data['timeSlots'] = $allSlots->map(function ($slot) use ($takenSlots) {
                 // Ensure correct time format comparison (H:i:s)
                 $slotTime = date('H:i:s', strtotime($slot->start_time));
                 $slot->is_taken = in_array($slotTime, $takenSlots);
                 $slot->display_time = date('H:i', strtotime($slot->start_time));
+
                 return $slot;
             });
         }
