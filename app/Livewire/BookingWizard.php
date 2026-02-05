@@ -111,7 +111,24 @@ class BookingWizard extends Component
         } elseif ($this->step == 3) {
             $this->validate([
                 'booking_date' => 'required|date|after_or_equal:today',
-                'booking_time' => 'required',
+                'booking_time' => [
+                    'required',
+                    function ($attribute, $value, $fail) {
+                        $isTaken = Booking::where('booking_date', $this->booking_date)
+                            ->where('barber_id', $this->barber_id)
+                            ->whereIn('status', [
+                                'waiting_payment',
+                                'waiting_verification',
+                                'confirmed',
+                            ])
+                            ->where('booking_time', $value)
+                            ->exists();
+
+                        if ($isTaken) {
+                            $fail('Jadwal ini sudah terisi. Silakan pilih jam lain.');
+                        }
+                    },
+                ],
             ]);
         } elseif ($this->step == 4) {
             $this->validate([
@@ -155,7 +172,24 @@ class BookingWizard extends Component
             'service_id' => 'required',
             'barber_id' => 'required',
             'booking_date' => 'required',
-            'booking_time' => 'required',
+            'booking_time' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    $isTaken = Booking::where('booking_date', $this->booking_date)
+                        ->where('barber_id', $this->barber_id)
+                        ->whereIn('status', [
+                            'waiting_payment',
+                            'waiting_verification',
+                            'confirmed',
+                        ])
+                        ->where('booking_time', $value)
+                        ->exists();
+
+                    if ($isTaken) {
+                        $fail('Maaf, jadwal ini baru saja diambil oleh orang lain. Silakan pilih waktu lain.');
+                    }
+                },
+            ],
             'name' => 'required',
             'phone' => 'required',
             'payment_proof' => 'required',
@@ -199,21 +233,35 @@ class BookingWizard extends Component
         $data['barbers'] = Barber::all();
 
         if ($this->step == 3) {
+            // Get raw booking times and format them to H:i
             $takenSlots = Booking::where('booking_date', $this->booking_date)
                 ->where('barber_id', $this->barber_id)
-                ->where('status', '!=', 'rejected')
-                ->where('status', '!=', 'expired')
-                ->pluck('booking_time')
+                ->whereIn('status', [
+                    'waiting_payment',
+                    'waiting_verification',
+                    'confirmed',
+                ])
+                ->get() // Get collection to use model casting
+                ->map(function ($booking) {
+                    return $booking->booking_time->format('H:i');
+                })
                 ->toArray();
 
             $allSlots = TimeSlot::where('is_active', true)->orderBy('start_time')->get();
 
             // Map slots to include is_taken status
-            $data['timeSlots'] = $allSlots->map(function ($slot) use ($takenSlots) {
-                // Ensure correct time format comparison (H:i:s)
-                $slotTime = date('H:i:s', strtotime($slot->start_time));
-                $slot->is_taken = in_array($slotTime, $takenSlots);
-                $slot->display_time = date('H:i', strtotime($slot->start_time));
+            $isToday = $this->booking_date === now()->format('Y-m-d');
+            $currentTime = now()->format('H:i'); // Compare using H:i
+
+            $data['timeSlots'] = $allSlots->map(function ($slot) use ($takenSlots, $isToday, $currentTime) {
+                // Determine format based on DB value, safe bet is substr or format
+                $slotTime = date('H:i', strtotime($slot->start_time));
+                
+                // Check if taken OR if it's today and the time has passed
+                $isPast = $isToday && $slotTime < $currentTime;
+                
+                $slot->is_taken = in_array($slotTime, $takenSlots) || $isPast;
+                $slot->display_time = $slotTime;
 
                 return $slot;
             });

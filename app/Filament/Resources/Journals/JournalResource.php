@@ -20,7 +20,7 @@ class JournalResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::PencilSquare;
 
-    protected static ?string $recordTitleAttribute = 'Journal';
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {

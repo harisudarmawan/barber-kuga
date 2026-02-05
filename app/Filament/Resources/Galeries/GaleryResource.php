@@ -20,7 +20,7 @@ class GaleryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Photo;
 
-    protected static ?string $recordTitleAttribute = 'Galery';
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {

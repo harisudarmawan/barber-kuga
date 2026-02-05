@@ -21,9 +21,10 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
                     @foreach($timeSlots as $slot)
                         @php
-                            // Assuming start_time is H:i:s or H:i:00
-                            $timeValue = $slot->start_time; 
-                            $displayTime = \Carbon\Carbon::parse($slot->start_time)->format('H:i');
+                            // Use the display_time calculated in component (H:i) or format start_time
+                            // The component now sets display_time to H:i
+                            $timeValue = isset($slot->display_time) ? $slot->display_time : \Carbon\Carbon::parse($slot->start_time)->format('H:i'); 
+                            $displayTime = $timeValue;
                             $isTaken = $slot->is_taken;
                             $isSelected = $booking_time === $timeValue;
                         @endphp
@@ -34,7 +35,7 @@
                             {{ $isSelected 
                                 ? 'bg-emerald-600 border-yellow-500 text-white shadow-md transform scale-105 ring-2 ring-yellow-400' 
                                 : ($isTaken 
-                                    ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800 text-emerald-300 cursor-not-allowed decoration-slice line-through' 
+                                    ? 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-60' 
                                     : 'bg-white dark:bg-emerald-900/30 border-emerald-200 dark:border-emerald-700 text-emerald-700 dark:text-emerald-200 hover:border-emerald-400 hover:text-emerald-900') 
                             }}">
                             {{ $displayTime }}

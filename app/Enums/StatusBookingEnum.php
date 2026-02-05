@@ -5,7 +5,7 @@ namespace App\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum StatusBookingEnum: string implements HasLabel, HasColor
+enum StatusBookingEnum: string implements HasColor, HasLabel
 {
     case WAITING_PAYMENT = 'waiting_payment';
     case WAITING_VERIFICATION = 'waiting_verification';

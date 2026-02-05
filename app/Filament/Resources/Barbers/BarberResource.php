@@ -20,7 +20,7 @@ class BarberResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Scissors;
 
-    protected static ?string $recordTitleAttribute = 'Barber';
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {
