@@ -15,3 +15,4 @@ class JournalSeeder extends Seeder
         Journal::factory()->count(10)->create();
     }
 }
+    
