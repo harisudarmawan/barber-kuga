@@ -26,6 +26,9 @@ class HomeController extends Controller
             $q->orderBy('name');
         }])->get();
 
-        return view('kuga.index', compact('galeris', 'journals', 'journalCount', 'categories'));
+        // Get Special Packages
+        $specialPackages = \App\Models\SpecialPackage::orderBy('sort_order')->get();
+
+        return view('kuga.index', compact('galeris', 'journals', 'journalCount', 'categories', 'specialPackages'));
     }
 }

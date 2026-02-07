@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             JournalSeeder::class,
             ServiceCategoriesSeeder::class,
             SettingSeeder::class,
+            SpecialPackageSeeder::class,
         ]);
     }
 }

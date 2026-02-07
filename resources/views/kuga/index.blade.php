@@ -180,59 +180,50 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Basic -->
-                <div class="bg-white dark:bg-emerald-900 p-8 rounded-3xl border border-gray-200 dark:border-emerald-800 shadow-sm hover:-translate-y-2 hover:shadow-lg transition-all duration-300 text-center flex flex-col">
-                    <h3 class="text-xl font-bold text-green-900 dark:text-white mb-4 font-heading">Basic Package</h3>
-                    <div class="text-4xl font-extrabold text-yellow-600 dark:text-yellow-500 mb-2">150K</div>
-                    <p class="text-sm text-gray-500 dark:text-emerald-200 mb-8 uppercase tracking-widest">Per Kunjungan</p>
-                    <ul class="space-y-4 text-gray-600 dark:text-emerald-100 text-left mb-8 flex-1">
-                        @foreach(['Classic Haircut', 'Hair Wash & Tonic', 'Hot Towel Treatment', 'Basic Styling', 'Complimentary Coffee'] as $feature)
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500 text-lg">✓</span> {{ $feature }}
-                            </li>
-                        @endforeach
-                    </ul>
-                    <a href="{{ route('booking') }}" class="w-full py-3 px-6 rounded-xl border-2 border-green-900 text-green-900 font-bold hover:bg-green-900 hover:text-white transition-all duration-300">
-                        Pilih Paket
-                    </a>
-                </div>
-
-                <!-- Premium -->
-                <div class="relative bg-white p-8 rounded-3xl border-2 border-yellow-500 shadow-xl transform md:-translate-y-4 text-center flex flex-col z-10">
-                    <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-500 text-white text-xs font-bold px-4 py-1 rounded-full tracking-widest shadow-md">
-                        MOST POPULAR
-                    </span>
-                    <h3 class="text-xl font-bold text-green-900 dark:text-white mb-4 font-heading">Premium Package</h3>
-                    <div class="text-5xl font-extrabold text-yellow-600 dark:text-yellow-500 mb-2">275K</div>
-                    <p class="text-sm text-gray-500 dark:text-emerald-200 mb-8 uppercase tracking-widest">Per Kunjungan</p>
-                    <ul class="space-y-4 text-gray-600 dark:text-emerald-100 text-left mb-8 flex-1">
-                        @foreach(['Premium Haircut & Styling', 'Beard Grooming', 'Hair Treatment', 'Head Massage (15 menit)', 'Premium Hair Products', 'Complimentary Beverage'] as $feature)
-                            <li class="flex items-center gap-3">
-                                <span class="text-yellow-500 text-lg">✓</span> <span class="font-medium text-gray-800">{{ $feature }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <a href="{{ route('booking') }}" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-green-900 to-green-700 text-white font-bold hover:shadow-lg hover:from-green-800 hover:to-green-600 transition-all duration-300 shadow-green-900/20">
-                        Pilih Paket
-                    </a>
-                </div>
-
-                <!-- Ultimate -->
-                <div class="bg-white dark:bg-emerald-900 p-8 rounded-3xl border border-gray-200 dark:border-emerald-800 shadow-sm hover:-translate-y-2 hover:shadow-lg transition-all duration-300 text-center flex flex-col">
-                    <h3 class="text-xl font-bold text-green-900 dark:text-white mb-4 font-heading">Ultimate Package</h3>
-                    <div class="text-4xl font-extrabold text-yellow-600 dark:text-yellow-500 mb-2">450K</div>
-                    <p class="text-sm text-gray-500 dark:text-emerald-200 mb-8 uppercase tracking-widest">Per Kunjungan</p>
-                    <ul class="space-y-4 text-gray-600 dark:text-emerald-100 text-left mb-8 flex-1">
-                        @foreach(['Luxury Haircut & Styling', 'Complete Beard Care', 'Hair Coloring/Treatment', 'Full Body Massage (30 menit)', 'Facial Treatment', 'Take Home Products', 'Priority Booking'] as $feature)
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500 text-lg">✓</span> {{ $feature }}
-                            </li>
-                        @endforeach
-                    </ul>
-                    <a href="{{ route('booking') }}" class="w-full py-3 px-6 rounded-xl border-2 border-green-900 text-green-900 font-bold hover:bg-green-900 hover:text-white transition-all duration-300">
-                        Pilih Paket
-                    </a>
-                </div>
+                @foreach($specialPackages as $package)
+                    @if($package->is_popular)
+                        <!-- Premium / Popular Package -->
+                        <div class="relative bg-white p-8 rounded-3xl border-2 border-yellow-500 shadow-xl transform md:-translate-y-4 text-center flex flex-col z-10">
+                            <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-500 text-white text-xs font-bold px-4 py-1 rounded-full tracking-widest shadow-md">
+                                MOST POPULAR
+                            </span>
+                            <h3 class="text-xl font-bold text-green-900 dark:text-white mb-4 font-heading">{{ $package->name }}</h3>
+                            <div class="text-5xl font-extrabold text-yellow-600 dark:text-yellow-500 mb-2">
+                                {{ $package->price / 1000 }}K
+                            </div>
+                            <p class="text-sm text-gray-500 dark:text-emerald-200 mb-8 uppercase tracking-widest">{{ $package->period }}</p>
+                            <ul class="space-y-4 text-gray-600 dark:text-emerald-100 text-left mb-8 flex-1 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                                @foreach($package->features as $feature)
+                                    <li class="flex items-center gap-3">
+                                        <span class="text-yellow-500 text-lg">✓</span> <span class="font-medium text-gray-800">{{ $feature }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <a href="{{ route('booking') }}" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-green-900 to-green-700 text-white font-bold hover:shadow-lg hover:from-green-800 hover:to-green-600 transition-all duration-300 shadow-green-900/20">
+                                Pilih Paket
+                            </a>
+                        </div>
+                    @else
+                        <!-- Regular Package -->
+                        <div class="bg-white dark:bg-emerald-900 p-8 rounded-3xl border border-gray-200 dark:border-emerald-800 shadow-sm hover:-translate-y-2 hover:shadow-lg transition-all duration-300 text-center flex flex-col">
+                            <h3 class="text-xl font-bold text-green-900 dark:text-white mb-4 font-heading">{{ $package->name }}</h3>
+                            <div class="text-4xl font-extrabold text-yellow-600 dark:text-yellow-500 mb-2">
+                                {{ $package->price / 1000 }}K
+                            </div>
+                            <p class="text-sm text-gray-500 dark:text-emerald-200 mb-8 uppercase tracking-widest">{{ $package->period }}</p>
+                            <ul class="space-y-4 text-gray-600 dark:text-emerald-100 text-left mb-8 flex-1 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                                @foreach($package->features as $feature)
+                                    <li class="flex items-center gap-3">
+                                        <span class="text-green-500 text-lg">✓</span> {{ $feature }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <a href="{{ route('booking') }}" class="w-full py-3 px-6 rounded-xl border-2 border-green-900 text-green-900 font-bold hover:bg-green-900 hover:text-white transition-all duration-300">
+                                Pilih Paket
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>
@@ -413,4 +404,23 @@
         </div>
     </section>
 
+
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #ddd;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #064e3b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #bbb;
+        }
+    </style>
 @endsection
