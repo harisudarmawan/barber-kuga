@@ -17,7 +17,7 @@ class JournalFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->words(6),
+            'title' => $this->faker->sentence(6),
             'image' => 'test/gallery1.jpg',
             'summary' => $this->faker->paragraph(2),
             'content' => '
