@@ -54,7 +54,7 @@
 
         {{-- Footer --}}
         <p class="mt-6 text-xs text-slate-600">
-            © {{ date('Y') }} Kuga Barbershop. All rights reserved.
+            &copy; 2026 KUGA Barbershop. design by PALCUMPING.GL
         </p>
     </div>
 
