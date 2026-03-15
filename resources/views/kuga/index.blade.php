@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- HERO SECTION -->
-    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-cover bg-center bg-fixed"
+    <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-cover bg-center"
         style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('{{ asset('images/hero-main.jpg') }}');">
         
         <!-- Animated Blobs -->
