@@ -24,7 +24,7 @@ class BookingObserver
                        "Layanan: {$booking->service->name}\n".
                        "Waktu: {$booking->booking_date->format('d M Y')} jam {$booking->booking_time->format('H:i')}\n\n".
                        "Segera cek admin panel untuk konfirmasi.\n".
-                       'https://kuga.id/dashboard';
+                       config('app.url').'/dashboard';
 
             FonnteService::sendWhatsApp($adminPhone, $message);
         }
